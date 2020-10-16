@@ -1,0 +1,51 @@
+server:
+  port: 8004
+spring:
+  application:
+    name: service-config
+#  cloud:
+#    config:
+#      server:
+#        git:
+#          uri: http://github.com/wwhm880218/FileRepo.git
+#          username: 270767847@qq.com
+#          password: aa46256830
+#          default-label: main
+#          search-paths: /doc/config
+#    bus:
+#      refresh:
+#        enabled: true
+  cloud:
+    config:
+      server:
+        native:
+          search-locations:
+            - classpath:/config/
+    bus:
+      refresh:
+        enabled: true
+  profiles:
+    active:
+      - native
+  rabbitmq:
+    host: 172.18.143.82
+    port: 5672
+    username: admin
+    password: admin
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#      cors:
+#        allowed-origins: "*"
+#        allowed-methods: "*"
+#      name: config-server
