@@ -1,0 +1,22 @@
+server:
+  port: 8001
+zuul:
+  ignoredServices: '*' #忽略所有未配置的service
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+  routes:
+    user-service: #自定义名称
+      path: /user/**
+      serviceId: feign #/user/开头的路径转发至consumer微服务
+      sensitiveHeaders: "*"
+hystrix: #hystrix配置
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 40000
+ribbon: #ribbon负载均衡参数配置
+  ReadTimeout: 5000
+  ConnectTimeout: 5000

@@ -1,0 +1,59 @@
+
+spring:
+  application:
+    name: consumer
+  rabbitmq:
+    host: 172.18.143.82
+    port: 5672
+    username: admin
+    password: admin
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: service-config
+#      uri: http://127.0.0.1:8004
+      name: consumer
+      profile: dev
+      label: main
+    bus:
+      refresh:
+        enabled: true
+#      trace:
+#        enabled: true
+
+#    bus:
+#      trace:
+#        enabled: true
+
+#      cors:
+#        allowed-origins: "*"
+  redis:
+    database: 0
+    host: 172.18.143.82
+    port: 6379
+    password:
+    timeout: 20000
+      #cluster:
+    #nodes: 192.168.211.134:7000,192.168.211.134:7001
+    #-
+    #max-redirects:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#        allowed-methods: "*"

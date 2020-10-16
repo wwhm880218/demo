@@ -1,0 +1,22 @@
+#server:
+#  port: 8001
+spring:
+  application:
+    name: zuul
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: service-config
+      profile: dev
+      name: zuul
+      uri: http://127.0.0.1:8004
+eureka:
+  client:
+    service-url:
+      defaultZone: "http://127.0.0.1:8761/eureka"
+  routes:
+    user-service: #自定义名称
+      path: /user/**
+      serviceId: consumer #/user/开头的路径转发至consumer微服务
+      sensitiveHeaders: "*"
